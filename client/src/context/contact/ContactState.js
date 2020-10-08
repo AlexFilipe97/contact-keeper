@@ -15,6 +15,7 @@ import {
 const ContactState = (props) => {
   const initialState = {
     current: null,
+    filtered: null,
     contacts: [
       {
         id: 1,
@@ -83,19 +84,33 @@ const ContactState = (props) => {
   };
 
   // filter contacts
+  const filter = (target) => {
+    dispatch({
+      type: FILTER_CONTACTS,
+      payload: target,
+    });
+  };
 
   // clear filter
+  const clearFilter = () => {
+    dispatch({
+      type: CLEAR_FILTER,
+    });
+  };
 
   return (
     <ContactContext.Provider
       value={{
         current: state.current,
         contacts: state.contacts,
+        filtered: state.filtered,
         addContact,
         deleteContact,
         setCurrent,
         clearCurrent,
         updateContact,
+        filter,
+        clearFilter,
       }}
     >
       {props.children}
