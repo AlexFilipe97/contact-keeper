@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url("https://fonts.googleapis.com/css?family=Roboto");
 
 /* Global Styles */
 :root {
@@ -16,7 +16,7 @@
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 1rem;
   line-height: 1.6;
   background-color: #fff;
@@ -304,10 +304,10 @@ input {
   color: #888;
 }
 
-input[type='text'],
-input[type='email'],
-input[type='password'],
-input[type='date'],
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
 select,
 textarea {
   display: block;
@@ -317,7 +317,7 @@ textarea {
   border: 1px solid #ccc;
 }
 
-input[type='submit'],
+input[type="submit"],
 button {
   font: inherit;
 }
@@ -370,6 +370,10 @@ table th {
   display: flex;
 }
 
+.navbar li {
+  padding-top: 10px;
+}
+
 .navbar a {
   color: #fff;
   padding: 0.45rem;
@@ -385,19 +389,27 @@ table th {
 }
 
 /* Animation (Add After) */
-.item-enter {
+.fade-enter {
   opacity: 0;
 }
-.item-enter-active {
+.fade-enter-active {
   opacity: 1;
   transition: opacity 1000ms ease-in;
 }
-.item-exit {
+.fade-exit {
   opacity: 1;
 }
-.item-exit-active {
+.fade-exit-active {
   opacity: 0;
   transition: opacity 1000ms ease-in;
+}
+
+.divider {
+  display: inline-block;
+  width: 1px;
+  background-color: #fff;
+  margin: 0 10px;
+  height: 3em;
 }
 
 /* Mobile Styles */
