@@ -24,7 +24,6 @@ const AuthState = (props) => {
   };
 
   const [state, dispatch] = useReducer(authReducer, initialState);
-  const authContext = useContext(AuthContext);
 
   // load user
   const loadUser = async () => {
@@ -98,6 +97,11 @@ const AuthState = (props) => {
   };
 
   // logout
+  const logout = () => {
+    dispatch({
+      type: LOGOUT,
+    });
+  };
 
   // clear errors
   const clearErrors = () => {
@@ -118,6 +122,7 @@ const AuthState = (props) => {
         clearErrors,
         loadUser,
         login,
+        logout,
       }}
     >
       {props.children}
