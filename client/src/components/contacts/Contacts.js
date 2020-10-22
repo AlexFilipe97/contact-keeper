@@ -1,32 +1,50 @@
-import React, { Fragment, useContext } from "react";
+import React, { Fragment, useContext, useEffect } from "react";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import ContactItem from "./ContactItem";
 import ContactContext from "../../context/contact/ContactContext";
+import Spinner from "../layout/Spinner";
 
 const Contacts = () => {
   const contactContext = useContext(ContactContext);
 
-  const { contacts, filtered } = contactContext;
+  const { contacts, filtered, getContacts, loading } = contactContext;
 
-  if (contacts.length === 0) {
+  useEffect(() => {
+    getContacts();
+    // eslint-disable-next-line
+  }, []);
+
+  if (contacts !== null && contacts.length === 0 && !loading) {
     return <h4>You can now start adding contacts!</h4>;
   }
 
   return (
     <Fragment>
-      <TransitionGroup>
-        {filtered !== null
-          ? filtered.map((contact) => (
-              <CSSTransition key={contact.id} timeout={500} classNames='fade'>
-                <ContactItem contact={contact} />
-              </CSSTransition>
-            ))
-          : contacts.map((contact) => (
-              <CSSTransition key={contact.id} timeout={500} classNames='fade'>
-                <ContactItem contact={contact} key={contact.id} />
-              </CSSTransition>
-            ))}
-      </TransitionGroup>
+      {contacts !== null && !loading ? (
+        <TransitionGroup>
+          {filtered !== null
+            ? filtered.map((contact) => (
+                <CSSTransition
+                  key={contact._id}
+                  timeout={500}
+                  classNames='fade'
+                >
+                  <ContactItem contact={contact} />
+                </CSSTransition>
+              ))
+            : contacts.map((contact) => (
+                <CSSTransition
+                  key={contact._id}
+                  timeout={500}
+                  classNames='fade'
+                >
+                  <ContactItem contact={contact} key={contact.id} />
+                </CSSTransition>
+              ))}
+        </TransitionGroup>
+      ) : (
+        <Spinner />
+      )}
     </Fragment>
   );
 };
